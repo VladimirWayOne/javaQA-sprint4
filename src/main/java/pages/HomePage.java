@@ -21,7 +21,7 @@ public class HomePage extends BasePage {
 
     private By faqAnswer(int answerNumber) {
         // Возвращает локатор параграфа с ответом FAQ (нумерация сверху вниз).
-        return By.xpath(".//div[@class='accordion__panel' and @id='accordion__panel-{"+answerNumber+"}']/p");
+        return By.xpath(".//div[@class='accordion__panel' and @id='accordion__panel-{" + answerNumber + "}']/p");
     }
 
     public HomePage(WebDriver driver) {
@@ -32,16 +32,18 @@ public class HomePage extends BasePage {
 
     public void clickBottomOrderButton() {
         WebElement bottomOrderButton = driver.findElement(BOTTOM_ORDER_BUTTON);
-        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", bottomOrderButton);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", bottomOrderButton);
         bottomOrderButton.click();
     }
+
     public void clickTopOrderButton() {
         driver.findElement(TOP_ORDER_BUTTON).click();
     }
 
-     public void clickFaqQuestion(int questionNumber) {
-         driver.findElements(FAQ_BUTTONS).get(questionNumber).click();
+    public void clickFaqQuestion(int questionNumber) {
+        driver.findElements(FAQ_BUTTONS).get(questionNumber).click();
     }
+
     public boolean faqAnswerIsDisplayed(int answerNumber) {
         return driver.findElements(FAQ_ANSWERS).get(answerNumber).isDisplayed();
     }
