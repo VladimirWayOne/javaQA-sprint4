@@ -12,16 +12,17 @@ public class BasePage {
     public final static String MAIN_PAGE_URL = "https://qa-scooter.praktikum-services.ru/";
     protected final WebDriver driver;
     // Логотип-кнопка Яндекса
-    private final static By YANDEX_LOGO_BUTTON  = By.cssSelector("a.Header_LogoYandex__3TSOI");;
+    private final static By YANDEX_LOGO_BUTTON = By.cssSelector("a.Header_LogoYandex__3TSOI");
+    ;
     // Логотип-кнопка Самоката
-    private final static By SCOOTER_LOGO_BUTTON  = By.cssSelector(".Header_LogoScooter__3lsAR");
+    private final static By SCOOTER_LOGO_BUTTON = By.cssSelector(".Header_LogoScooter__3lsAR");
     // Кнопка принять куки
-    private final static By COOKIE_ACCEPT_BUTTON  = By.xpath(".//button[text()='да все привыкли']");
+    private final static By COOKIE_ACCEPT_BUTTON = By.xpath(".//button[text()='да все привыкли']");
     // Кнопка для ввода номера заказа для Статуса
-    private final static By ORDER_STATUS_BUTTON  = By.xpath(".//button[text()='Статус заказа']");
+    private final static By ORDER_STATUS_BUTTON = By.xpath(".//button[text()='Статус заказа']");
 
-    public BasePage(WebDriver driver){
-        this.driver=driver;
+    public BasePage(WebDriver driver) {
+        this.driver = driver;
     }
 
     public void waitUrlUntilNotAboutBlank() {
@@ -33,6 +34,7 @@ public class BasePage {
     public void openUrl(String url) {
         driver.get(url);
     }
+
     // Нажать на эелемент
     public void click(By elementLocator) {
         driver.findElement(elementLocator).click();
@@ -56,7 +58,7 @@ public class BasePage {
     }
 
     // Нажать на кнопку "Статус заказа"
-    public void clickOrderStatus(){
+    public void clickOrderStatus() {
         click(ORDER_STATUS_BUTTON);
     }
 
@@ -68,7 +70,7 @@ public class BasePage {
     }
 
     // Явное ожидание перехода на URL главной страницы
-    public void waitUrlToBe () {
+    public void waitUrlToBe() {
         new WebDriverWait(driver, 3)
                 .until(ExpectedConditions.urlToBe(MAIN_PAGE_URL));
     }

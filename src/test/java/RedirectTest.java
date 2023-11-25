@@ -1,11 +1,12 @@
-import org.hamcrest.MatcherAssert;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import pages.BasePage;
 import pages.OrderPage;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.anyOf;
+import static org.hamcrest.CoreMatchers.containsString;
 
 // Класс для  тестирования перехода на страницу Яндекса (Дзена) или Главную страницу самоката
 @RunWith(Parameterized.class)
@@ -22,7 +23,7 @@ public class RedirectTest extends BaseTest {
     public static Object[][] getStartUrl() {
         return new Object[][]{
                 // Короткий текст
-                { BasePage.MAIN_PAGE_URL},
+                {BasePage.MAIN_PAGE_URL},
                 // Длинный текст
                 {OrderPage.ORDER_PAGE_URL},
 
@@ -33,8 +34,7 @@ public class RedirectTest extends BaseTest {
 
     // Если нажать на логотип Яндекса, в новом окне откроется главная страница Яндекса
     @Test
-    public void checkClickLogoYandex_expectGoToYandexMainPage() {
-        super.implicitlyWait(5); // Неявное ожидание
+    public void checkClickLogoYandexExpectGoToYandexMainPage() {
 
         // Создаем экземпляр класса верхней части станицы c логотипом
         BasePage basePage = new BasePage(driver);
@@ -46,13 +46,13 @@ public class RedirectTest extends BaseTest {
         String expectedYandex = "yandex.ru";// Ожидаемый URL
         String actual = driver.getCurrentUrl(); // Фактический URL
         // ассерт по вхождению, так как может открыться капча дзена
-        MatcherAssert.assertThat(  actual, anyOf(containsString(expectedDzen), containsString(expectedYandex)));
+        Assert.assertThat("Осуществляется переход на страницу Яндекса/Дзена", actual, anyOf(containsString(expectedDzen), containsString(expectedYandex)));
     }
 
     // Если нажать на логотип Самоката, то вернемся/останемся на главную страницу Самоката
     @Test
-    public void checkClickLogoScooter_expectGoToScooterMainPage() {
-        super.implicitlyWait(5); // Неявное ожидание
+    public void checkClickLogoScooterExpectGoToScooterMainPage() {
+
 
         // Создаем экземпляр класса верхней части станицы c логотипом
         BasePage basePage = new BasePage(driver);
@@ -63,7 +63,7 @@ public class RedirectTest extends BaseTest {
         String expected = "https://qa-scooter.praktikum-services.ru/"; // Ожидаемый URL
         String actual = driver.getCurrentUrl(); // Фактический URL
         // ассерт по вхождению, так как может открыться капча дзена
-        MatcherAssert.assertThat(  actual, is(expected) );
+        Assert.assertEquals("Отображается главная страница самоката: ", actual, expected);
     }
 
 }

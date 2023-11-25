@@ -21,7 +21,7 @@ public class OrderWorkFlowTest extends BaseTest {
     private boolean actual; // Ожидаемый результат
 
     // Конструктор с параметрами
-    public OrderWorkFlowTest( String firstName, String lastName, String address, String subway, String telephoneNumber, String date, int rentalPeriod, int colour, String comment) {
+    public OrderWorkFlowTest(String firstName, String lastName, String address, String subway, String telephoneNumber, String date, int rentalPeriod, int colour, String comment) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
@@ -39,9 +39,9 @@ public class OrderWorkFlowTest extends BaseTest {
     public static Object[][] getOrderFormData() {
         return new Object[][]{
                 // Короткий текст
-                { "Имя", "Фио", "Бийск", "Сокольники", "83823315149", "25.11.2023", 1, 0, "1"},
+                {"Имя", "Фио", "Бийск", "Сокольники", "83823315149", "25.11.2023", 1, 0, "1"},
                 // Длинный текст
-                { "Имяимяим",
+                {"Имяимяим",
                         "Фамилияфамилияфамилияфамилияфа",
                         "РФ, г. Новосибирск, ул. Дема, адрес в 49 символов", "Сокольники", "+791347295468", "25.11.2023",
                         2, 1,
@@ -55,8 +55,8 @@ public class OrderWorkFlowTest extends BaseTest {
 
     // Тест: проверяем весь флоу позитивного сценария заказа самоката при нажатиии Верхней кнопки
     @Test
-    public void checkOrderScooterTopButtonValidData_expectSchooterIsOrdered() {
-        super.implicitlyWait(3); // Неявное ожидание
+    public void checkOrderScooterTopButtonValidDataExpectScooterIsOrdered() {
+
 
         HomePage homePage = new HomePage(driver);
         homePage.openUrl(BasePage.MAIN_PAGE_URL);
@@ -70,10 +70,9 @@ public class OrderWorkFlowTest extends BaseTest {
         Assert.assertTrue("Информация о заказе отображается", actual);
 
     }
-    @Test
-    public void checkOrderScooterBottomButtonValidData_expectSchooterIsOrdered() {
-        super.implicitlyWait(3); // Неявное ожидание
 
+    @Test
+    public void checkOrderScooterBottomButtonValidDataExpectScooterIsOrdered() {
         HomePage homePage = new HomePage(driver);
         homePage.openUrl(BasePage.MAIN_PAGE_URL);
         homePage.clickBottomOrderButton();

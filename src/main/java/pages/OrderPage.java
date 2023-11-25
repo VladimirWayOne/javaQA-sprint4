@@ -1,7 +1,6 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 import java.util.ArrayList;
@@ -25,14 +24,16 @@ public class OrderPage extends BasePage {
     // Ошибка о некорректном адресе
     private final By INCORRECT_ADDRESS_MESSAGE = By.xpath(".//input[contains(@placeholder,'Адрес')]/parent::div/div");
     // Поле ввода метро
-    private final By SUBWAY_FIELD = By.xpath(".//input[contains(@placeholder,'метро')]")  ;
+    private final By SUBWAY_FIELD = By.xpath(".//input[contains(@placeholder,'метро')]");
     // Ошибка о некорректной станции метро (незаполнено поле)
-    private final By INCORRECT_SUBWAY_MESSAGE = By.xpath(".//input[contains(@placeholder,'метро')]/parent::div/parent::div/parent::div/div[@class!='select-search']") ;
+    private final By INCORRECT_SUBWAY_MESSAGE = By.xpath(".//input[contains(@placeholder,'метро')]/parent::div/parent::div/parent::div/div[@class!='select-search']");
+
     // возвращает локатор кнопки с подсказкой наименования Метро
     private By subwayHintButton(String subwayName) {
         // Возвращает локатор кнопки с вопросом FAQ (нумерация сверху вниз)
         return By.xpath(".//div[text()='" + subwayName + "']/parent::button");
     }
+
     // Поле ввода номера телефона
     private final By TELEPHONE_NUMBER_FIELD = By.xpath(".//input[contains(@placeholder,'Телефон')]");
     // Ошибка о некорректном номере телефона
@@ -67,6 +68,7 @@ public class OrderPage extends BasePage {
     public void inputLastName(String lastName) {
         driver.findElement(LAST_NAME_INPUT).sendKeys(lastName);
     }
+
     public void inputFirstName(String firstName) {
         driver.findElement(FIRST_NAME_INPUT).sendKeys(firstName);
     }
@@ -74,10 +76,12 @@ public class OrderPage extends BasePage {
     public void inputAddress(String address) {
         driver.findElement(ADDRESS_INPUT).sendKeys(address);
     }
-    public void chooseSubway(String subway){
+
+    public void chooseSubway(String subway) {
         click(SUBWAY_FIELD);
         click(subwayHintButton(subway));
     }
+
     public void inputTelephoneNumber(String telephoneNumber) {
         driver.findElement(TELEPHONE_NUMBER_FIELD).sendKeys(telephoneNumber);
     }
@@ -85,18 +89,21 @@ public class OrderPage extends BasePage {
     public void goToScooterParams() {
         click(NEXT_BUTTON);
     }
+
     public void inputDate(String date) {
         driver.findElement(DATE_FIELD).sendKeys(date);
     }
+
     public void chooseRentalPeriod(int option) {
         click(RENTAL_PERIOD_FIELD);
         driver.findElements(RENTAL_PERIOD_LIST).get(option).click();
     }
 
-    public void chooseColor(int option){
+    public void chooseColor(int option) {
         driver.findElements(COLOR_CHECKBOXES).get(option).click();
     }
-    public void inputComment(String comment){
+
+    public void inputComment(String comment) {
         driver.findElement(COMMENT_FOR_COURIER_FIELD).sendKeys(comment);
     }
 
@@ -115,9 +122,10 @@ public class OrderPage extends BasePage {
         }
         return numbers;
     }
+
     // Вернуть номер заказа, для дальнейшего отслеживания
     // TODO: данный функционал не требуется в рамках задания, в дальнейшем дописать сценарии
-    public String getOrderNumber(){
+    public String getOrderNumber() {
         String aboutOrderText = driver.findElement(ORDER_COMPLETED_INFO).getText();
         return findNumbersInText(aboutOrderText).get(0);
     }
@@ -130,7 +138,7 @@ public class OrderPage extends BasePage {
         inputTelephoneNumber(telephoneNumber);
     }
 
-    public void fillRentData(String date, int rentalPeriod, int colorOption, String comment){
+    public void fillRentData(String date, int rentalPeriod, int colorOption, String comment) {
         inputDate(date);
         chooseRentalPeriod(rentalPeriod);
         chooseColor(colorOption);
@@ -146,6 +154,7 @@ public class OrderPage extends BasePage {
     public boolean isIncorrectFirstNameMessageDisplayed() {
         return driver.findElement(INCORRECT_FIRST_NAME_MESSAGE).isDisplayed();
     }
+
     // Отображается ли сообщение о некорректном имени
     // TODO: данный функционал не требуется в рамках задания, так как проверяется позитивный воркфлоу (в дальнейшем дописать сценарии)
     public boolean isIncorrectLastNameMessageDisplayed() {

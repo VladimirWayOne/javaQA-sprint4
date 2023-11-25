@@ -6,17 +6,17 @@ import pages.BasePage;
 import pages.HomePage;
 
 @RunWith(Parameterized.class)
-public class FaqTest extends BaseTest{
+public class FaqTest extends BaseTest {
     private final int questionNumber; // Поле с номером вопроса в разделе "Вопросы о важном"
 
     // Конструктор с параметрами
-    public FaqTest (int questionField) {
+    public FaqTest(int questionField) {
         this.questionNumber = questionField;
     }
 
     @Parameterized.Parameters
     public static Object[][] getQuestionNumber() {
-        return new Object[][] {
+        return new Object[][]{
                 {0},
                 {1},
                 {2},
@@ -29,8 +29,7 @@ public class FaqTest extends BaseTest{
     }
 
     @Test
-    public void checkClickQuestion_expectTextIsDisplayed() {
-        super.implicitlyWait(5); // Неявное ожидание
+    public void checkClickQuestionExpectTextIsDisplayed() {
 
         HomePage homePage = new HomePage(driver); // Создаем экземпляр класса главной страницы
         homePage.openUrl(BasePage.MAIN_PAGE_URL); // Открываем страницу в браузере
